@@ -1,0 +1,105 @@
+.body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 110vh; /* Adjust to accommodate variable height */
+  width: 100vw;
+  background-color: #f3e8dc;
+  font-family: 'Comic Sans MS', Arial, sans-serif;
+}
+
+.bookContainer {
+  background-color: #fff8f0;
+  width: 100%;
+  max-width: 600px;
+  min-height: 800px; /* Allow for flexibility */
+  /*max-height: none; /* Remove fixed height limit */
+  border: 10px solid #d4a373;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: visible; /* Prevent content clipping */
+}
+
+.bookContainerWritePageYourself {
+  background-color: #fff8f0;
+  width: 600px;
+  min-height: 800px; /* Allow for flexibility */
+  max-height: none; /* Remove fixed height limit */
+  border: 10px solid #d4a373;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+
+  overflow: visible; /* Prevent content clipping */
+}
+
+.pageContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  max-height: 600px; /* Set a max-height to limit the visible area */
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: hidden; /* Prevent horizontal scrolling if not needed */
+}
+
+.pageImage {
+  max-width: 90%;
+  height: auto; /* Maintain aspect ratio */
+  margin: 20px auto;
+  border: 4px solid #d4a373;
+  border-radius: 10px;
+}
+
+.pageText {
+  font-size: 20px;
+  color: #4b3832;
+  font-family: 'Georgia', serif;
+  line-height: 1.6;
+  margin-top: 20px;
+  padding: 0 10px; /* Add some padding for text readability */
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2px;
+  margin-bottom: 4px; /* Reduced to bring them closer */
+}
+
+.improve-text-create-image {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0px; /* Adjusted to reduce spacing */
+  gap: 8px; /* Added to control spacing between the buttons */
+}
+
+
+button {
+  padding: 12px 24px;
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #e64a19;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
