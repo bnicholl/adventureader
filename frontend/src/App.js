@@ -4,6 +4,7 @@ import TextComp from './UserText'; // Your input form component
 import NewPage from './NewPage';   // The new page to render after submission
 import PaymentPage from './PaymentOptions'
 import WritePage from './WritePageYourself'
+import FreeLibrary from './FreeLibrary'
 import PreviouslyGeneratedStories from  './PreviouslyWrittenStories'
 import { HelmetProvider } from 'react-helmet-async'; // Import HelmetProvider
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/write-page-yourself" element={<WritePage />} />
           <Route path="/payment-options" element={<PaymentPage />} />
           <Route path="/previously_written_stories" element={<PreviouslyGeneratedStories />} />
+          <Route path="/free_library" element={<FreeLibrary />} />
 
         </Routes>
       </Router>

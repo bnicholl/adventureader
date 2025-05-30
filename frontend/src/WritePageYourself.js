@@ -12,6 +12,7 @@ const s3 = new AWS.S3();
 
 
 function WritePage() {
+  //check if there is a location.state here. if there is instantate story text, images, etc. Else instantie the way it does it now
   const [showModal, setShowModal] = useState(false);
   const [grammarText, setGrammarText] = useState('');
 
@@ -168,11 +169,11 @@ function WritePage() {
       console.log("credits")
       console.log(credits)
 
-      toast.info('generating image!!!',{
+      toast.info('generating image and saving your story!!!',{
       autoClose: 20000});
 
       const stringifyCharacterDescriptions = characterDescriptions.join('. ') + '.';
-      const data = { client_ref_id: username, prompt : pages[currentPage], character_desc : stringifyCharacterDescriptions, current_page_text : "", 'state_machine_arn' : 'arn:aws:states:us-east-1:681897892690:stateMachine:WriteOwnStoryGenImageExpress', book_id : bookId, error : "none", image_s3_paths_for_story_in_list : imageS3Paths, pages_list : pages, execution_type : "sync", current_page : currentPage, pages_to_generate : pages.length.toString() }; //current_page and pages_to_generate is needed for one of the functions but it's irrelevant for this page
+      const data = { client_ref_id: username, prompt : pages[currentPage], character_desc_list : characterDescriptions, character_desc : stringifyCharacterDescriptions, current_page_text : "", 'state_machine_arn' : 'arn:aws:states:us-east-1:681897892690:stateMachine:WriteOwnStoryGenImageExpress', book_id : bookId, error : "none", image_s3_paths_for_story_in_list : imageS3Paths, pages_list : pages, execution_type : "sync", current_page : currentPage, pages_to_generate : pages.length.toString() }; //current_page and pages_to_generate is needed for one of the functions but it's irrelevant for this page
 
       const response = await fetch('https://h72k7br90g.execute-api.us-east-1.amazonaws.com/startStepFunction', {
         //const response = await fetch('https://generate.adventureader.com', {

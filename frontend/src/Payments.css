@@ -1,11 +1,40 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-y: auto;    /* Allow vertical scrolling */
+}
+
 .payments-container {
   text-align: center;
   margin: 20px;
   font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #ffecd2, #fcb69f); /* Soft child-friendly colors */
+  background: linear-gradient(135deg, #ffecd2, #fcb69f);
   padding: 20px;
   border-radius: 12px;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: auto; /* Ensures internal content can scroll if needed */
 }
+
+
+.unsubscribe-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.unsubscribe-button:hover {
+  background-color: #c0392b;
+}
+
 
 .payments-container h1 {
   color: #2c3e50;
@@ -15,6 +44,7 @@
 
 .payment-options {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
 }
@@ -23,10 +53,32 @@
   border: 2px solid #ccc;
   border-radius: 12px;
   padding: 20px;
-  width: 180px;
+  width: 100%;
+  max-width: 300px; /* Prevents it from growing too wide */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background: linear-gradient(135deg, #f9f9f9, #ffffff);
+  box-sizing: border-box;
 }
+
+@media (max-width: 600px) {
+  .payment-options {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .payment-option {
+    width: 90%;
+  }
+
+  .subscribe-button {
+    width: 75%;
+  }
+  .unsubscribe-button {
+    width: 30%;
+  }
+}
+
+
 
 .payment-option h2 {
   margin: 0;

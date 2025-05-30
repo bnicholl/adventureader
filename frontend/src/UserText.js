@@ -1,4 +1,4 @@
-
+import './genBook.css'
 import React, { useState, useEffect } from 'react';
 //I need this to route to other pages
 import { useNavigate } from 'react-router-dom';
@@ -17,7 +17,10 @@ function TextComp(){
   const [showPopup, setShowPopup] = useState(false);
   const [pagesToGenerate, setPagesToGenerate] = useState('');
 
-  const [createGrammaticalError, setCreateGrammaticalError] = useState(false);
+  const [misspellWordError, setMisspellWordError] = useState(false);
+  const [subjectWordAgreementError, setSubjectWordAgreementError] = useState(false);
+  const [punctuationError, setPunctuationError] = useState(false);
+
   const [showAdvancedOptions, setShowAdvancedOptions] = useState(false);
 
   const [inputVal, setInputVal] = useState('');
@@ -126,7 +129,8 @@ function TextComp(){
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ inputVal,  pagesToGenerate, createGrammaticalError, username, bookId, 'state_machine_arn' : 'arn:aws:states:us-east-1:681897892690:stateMachine:generateEntireBook', execution_type : "async"}),
+        //body: JSON.stringify({ inputVal,  pagesToGenerate, subjectWordAgreementError, misspellWordError, punctuationError, username, bookId, 'state_machine_arn' : 'arn:aws:states:us-east-1:681897892690:stateMachine:generateEntireBook', execution_type : "async"}),
+        body: JSON.stringify({ 'prompt' : inputVal,  'pages_to_generate' : pagesToGenerate, 'subjectWordAgreementError' : subjectWordAgreementError, 'misspellWordError' : misspellWordError, 'punctuationError' : punctuationError, 'client_ref_id' : username, 'book_id' : bookId, 'state_machine_arn' : 'arn:aws:states:us-east-1:681897892690:stateMachine:generateEntireBook', execution_type : "async"}),
       });
       const data = await response.json();
 
@@ -185,29 +189,37 @@ function TextComp(){
         Contact Us
       </a>
     </div>
+      <div className="header-container">
+        <div className="auth-buttons-gen-book">
+          {auth.isAuthenticated ? (
+            <>
+            <button onClick={() => auth.removeUser()}>Sign Out</button>
+            <button onClick={() => navigate('/previously_written_stories')}>Generated Stories</button>
+            <button onClick={() => navigate('/write-page-yourself')}>Write Pages Yourself</button>
+            <button onClick={() => navigate('/payment-options')}>Add Credits</button>
+            </>
+          ) : (
+            <>
+            <button onClick={() => auth.signinRedirect()}>Login / Create Free Account</button>
+            <button onClick={() => navigate('/free_library')}>Free Library</button>
+            </>
+          )}
 
-      <div className="auth-buttons">
-        {auth.isAuthenticated ? (
-          <>
-          <button onClick={() => auth.removeUser()}>Sign Out</button>
-          <button onClick={() => navigate('/previously_written_stories')}>Generated Stories</button>
-          <button onClick={() => navigate('/write-page-yourself')}>Write Pages Yourself</button>
-          <button onClick={() => navigate('/payment-options')}>Add Credits</button>
-          </>
-        ) : (
-          <button onClick={() => auth.signinRedirect()}>Sign in or create account</button>
-        )}
 
+            <div className="credit-box">
+                {`${credits} credits left`}
+            </div>
 
-        <div className="credit-box">
-            {`${credits} credits left`}
         </div>
 
-    </div>
 
-
+      </div>
+      <div>
         <h1 class="fantasy-text">Hello, adventurers!</h1>
         <p class="fantasy-text">type in something magical!</p>
+      </div>
+
+
       <form onSubmit={handleSubmit}>
         <input
           id = "first"
@@ -238,39 +250,65 @@ function TextComp(){
 
 
         {/* Advanced Options Section */}
-<div className="advanced-options-container">
-  <button
-    type="button"
-    onClick={() => setShowAdvancedOptions(!showAdvancedOptions)}
-    className="advanced-options-button"
-  >
-    {showAdvancedOptions ? 'Hide Advanced Options' : 'Show Advanced Options'}
-  </button>
+      <div className="advanced-options-container">
+        <button
+          type="button"
+          onClick={() => setShowAdvancedOptions(!showAdvancedOptions)}
+          className="advanced-options-button"
+        >
+          {showAdvancedOptions ? 'Hide Advanced Options' : 'Show Advanced Options'}
+        </button>
 
-  {showAdvancedOptions && (
-    <div className="advanced-options-box">
-      <h3 className="advanced-options-title">Advanced Options</h3>
-      <div className="checkbox-container">
-        <input
-          type="checkbox"
-          id="createError"
-          checked={createGrammaticalError}
-          onChange={() => setCreateGrammaticalError(!createGrammaticalError)}
-          className="fantasy-checkbox"
-        />
-        <label htmlFor="createError" className="fantasy-text">
-          Create grammatical error
-        </label>
+        {showAdvancedOptions && (
+          <div className="advanced-options-box">
+            <h3 className="advanced-options-title">Advanced Options</h3>
+            <div className="checkbox-container">
 
-        {/* Tooltip on Hover */}
-        <div className="tooltip">
-          <span className="tooltip-text">
-            So we we can try and identify the error!
-          </span>
-        </div>
+              <input
+                type="checkbox"
+                id="createError"
+                checked={misspellWordError}
+                onChange={() => setMisspellWordError(!misspellWordError)}
+                className="fantasy-checkbox"
+              />
+              <label htmlFor="createError" className="fantasy-text">
+                Create grammatical error
+              </label>
+
+              <input
+                type="checkbox"
+                id="subjectVerbAgreementError"
+                checked={subjectWordAgreementError}
+                onChange={() => setSubjectWordAgreementError(!subjectWordAgreementError)}
+                className="fantasy-checkbox"
+              />
+              <label htmlFor="subjectVerbAgreementError" className="fantasy-text">
+                Create subject verb agreement error
+              </label>
+
+              <input
+                type="checkbox"
+                id="createError"
+                checked={punctuationError}
+                onChange={() => setPunctuationError(!punctuationError)}
+                className="fantasy-checkbox"
+              />
+              <label htmlFor="createError" className="fantasy-text">
+                Create punctuation error
+              </label>
+
+              {/* Tooltip on Hover */}
+              <div className="tooltip">
+                <span className="tooltip-text">
+                  So we can try and identify the error!
+                </span>
+              </div>
+          </div>
       </div>
-    </div>
   )}
+
+
+
 </div>
 
 

@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
+html, body {
+    height: 100%;
+    overflow-y: auto;     /* allow the page to scroll */
+}
+
+.header-container {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  padding: 1rem;
+}
+
+
+
+
+
+@media (max-width: 1200px) {
+  .advanced-options-box {
+    max-height: 50vh; /* smaller height for small screens */
+    overflow-y: auto;
+    padding: 1rem;
+  }
+
+  .checkbox-container {
+    flex-direction: column; /* stack checkboxes */
+    align-items: flex-start;
+    max-height: 200px;       /* Limit height */
+    overflow-y: auto;        /* Enable scrolling if needed */
+    font-size: 0.9rem;       /* Slightly smaller text */
+    padding: 0.5rem;         /* Less padding */
+    gap: 0.25rem;            /* Tighter spacing between checkboxes if using gap */
+  }
+
+  .fantasy-input {
+    width: 90%; /* reduce width to fit smaller screens */
+  }
+
+  .fantasy-button,
+  .advanced-options-button {
+    width: 40%;
+    font-size: 1rem;
+  }
+
+  .credit-box {
+    width: 25%;
+    font-size: 1rem;
+  }
+
+  .auth-buttons-gen-book {
+    display: flex;
+    flex-direction: row !important; /* force row direction */
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    position: static;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: auto;
+    flex-wrap: wrap; /* optional for very narrow screens */
+  }
+
+  .fantasy-text {
+    font-size: 20px;
+    width: auto;
+  }
+}
+
+
+.contact-button-container {
+  position: static;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+
+
+
+}
+
+.contact-button {
+
+  padding: 10px 20px;
+  background-color: #28a745; /* Green background for the button */
+  color: white;
+  font-size: 16px;
+  border: 1px solid black;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact-button:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+
+
+.advanced-options-container {
+  position: relative; /* Establish context for absolutely positioned children */
+}
+
+.advanced-options-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.advanced-options-box {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Slight border for better contrast */
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent white background */
+  backdrop-filter: blur(10px); /* Apply blur to the background */
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+
+  max-height: 60vh;  /* Restrict height relative to screen */
+  overflow-y: auto;  /* Scroll inside the box if content exceeds */
+  max-height: calc(100vh - 100px); /* Account for header or button */
+}
+
+.advanced-options-title {
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Styling for the checkbox container */
+.checkbox-container {
+  position: relative;
+  margin-top: 10px;
+}
+
+.fantasy-checkbox {
+  margin-right: 0.5rem;
+}
+
+
+.tooltip {
+  margin-left: 0.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 4px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: normal;
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+}
+
+
+/* The tooltip text is hidden by default */
+.tooltip .tooltip-text {
+  visibility: hidden;
+  width: 250px;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 8px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Position above the checkbox */
+  left: 50%;
+  margin-left: -125px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Show the tooltip on hover */
+.checkbox-container:hover .tooltip .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Checkbox styling */
+.fantasy-checkbox {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.fantasy-background {
+  background-image: url('../public/Gemini_Generated_ui.jpg');
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* change from center to start */
+  text-align: center;
+  padding: 1rem; /* add padding to give breathing room */
+  overflow-y: auto;
+}
+
+
+
+.fantasy-text {
+  padding: 10px;
+  margin: 10px;
+  font-size: 20px; /* Increase font size for a fairy-tale feel */
+  width: 300px;
+  font-size: 25px; /* Increase font size for a fairy-tale feel */
+  font-family: 'Dancing Script', cursive; /* Fantasy font */
+  color: #333333; /* Text color */
+  font-weight: bold; /* Make the font thicker */
+}
+
+.fantasy-label {
+  font-size: 1.5rem;
+  color: #ff4d4d;
+}
+
+.subscription-warning {
+  color: #ff4d4d; /* Red color to grab attention */
+  font-size: 1.5rem; /* Slightly smaller font */
+  margin-top: 8px; /* Add some space above */
+  font-style: italic; /* Optional: Makes the text look softer */
+  text-align: center; /* Center-align the text */
+}
+
+
+.fantasy-input {
+  padding: 10px;
+  margin: 10px;
+  border: 2px solid #FFD700; /* Golden borders for fantasy theme */
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: #FFF7E1; /* Light, magical background */
+  width: 300px;
+  font-family: 'Comic Sans MS', Arial, sans-serif; /* More playful font */
+  color: #333333; /* Set a dark color for good readability */
+}
+
+.fantasy-button {
+  padding: 10px 20px;
+  background-color: #8A2BE2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.fantasy-button:hover {
+  background-color: #6A1BB2;
+}
+
+
+.credit-box {
+  margin-top: 10px; /* Space below the sign-in button */
+  padding: 10px 15px;
+  background-color: #FFD700; /* Golden background to match theme */
+  color: #333333; /* Dark text for readability */
+  font-size: 14px; /* Adjust font size */
+  font-weight: bold;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+}
+
+.auth-buttons-gen-book {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+
+
+
+.auth-buttons-gen-book button {
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+}

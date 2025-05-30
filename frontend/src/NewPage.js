@@ -127,6 +127,13 @@ function NewPage() {
 
         var indices_with_errors_for_page = []
         var amount_of_errors_given_page_int = 0
+
+        console.log("printing lengths")
+        console.log(story_text_words.length)
+        console.log(gramatical_error_story_text_words.length)
+
+
+
         for (let word_iterator = 0; word_iterator < story_text_words.length; word_iterator++){
 
           if (story_text_words[word_iterator] != gramatical_error_story_text_words[word_iterator]){
@@ -135,6 +142,8 @@ function NewPage() {
             amount_of_errors_given_page_int += 1
           }
         }
+
+
         indices_with_errors.push(indices_with_errors_for_page)
         amount_of_errors_given_page.push(amount_of_errors_given_page_int)
       }

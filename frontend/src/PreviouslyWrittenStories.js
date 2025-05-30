@@ -155,6 +155,7 @@ function PreviouslyGeneratedStories() {
   };
 
   return (
+    <div className="background-wrapper">
     <div className="gallery-container">
         <div className="auth-buttons">
           <button onClick={() => navigate('/')}>Create Another Story</button>
@@ -169,6 +170,7 @@ function PreviouslyGeneratedStories() {
             onClick={() => handleImageClick(image)}
           />
         ))}
+    </div>
     </div>
   );
 
