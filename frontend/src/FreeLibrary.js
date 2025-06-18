@@ -24,6 +24,9 @@ function FreeLibrary() {
   useEffect(() => {
     const fetchDataFromDynamoDB = async () => {
 
+      toast.info('loading free books!!',{
+      });
+
       try {
 
         const data = { client_reference_id: username };

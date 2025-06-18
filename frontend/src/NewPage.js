@@ -341,7 +341,8 @@ function NewPage() {
   console.log(shareText)
   console.log("image_links[0]")
   console.log(image_links[0])
-  return (
+
+return (
 
   <>
   {/* Helmet for setting Open Graph meta tags dynamically */}

@@ -261,9 +261,6 @@ html, body {
 
 
 
-
-
-
 .pageStatusWidget {
 
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
@@ -271,6 +268,18 @@ html, body {
   padding: 10px;
   border-radius: 5px;
   font-size: 16px;
+}
+
+
+/* Media query for screens smaller than 768px */
+@media screen and (max-width: 768px) {
+  .pageStatusWidget {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000; /* Ensure it appears on top */
+  }
 }
 
 

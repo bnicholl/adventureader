@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Payments.css'; // Create this CSS file for styling
 import { useAuth } from "react-oidc-context";
 import { toast } from 'react-toastify';
+import { gtag_report_conversion } from './gtagReportConversion';
 
 const PaymentPage = () => {
   const auth = useAuth();
@@ -91,7 +92,8 @@ const PaymentPage = () => {
     { id: 4, price: 48, stories: 190, individual_pages : 950, url: `https://buy.stripe.com/7sIfZg3Qh157bkc5kt?client_reference_id=${auth.user.profile.username}` },
   ];
 
-  const handleSubscribe = (url) => {
+  const handleSubscribe = (url, price) => {
+    gtag_report_conversion(price)
     window.location.href = url;
   };
 
@@ -107,7 +109,7 @@ const PaymentPage = () => {
             <p>&bull; cancel anytime</p>
             <button
               className="subscribe-button"
-              onClick={() => handleSubscribe(option.url)}
+              onClick={() => handleSubscribe(option.url, option.price)}
             >
               Subscribe
             </button>
